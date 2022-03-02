@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Pair;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.password.PasswordStrength.PasswordStrength;
 import com.example.password.databinding.ActivityMainBinding;
@@ -45,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private void calculatePasswordStrength(String str) {
         // Now, we need to define a PasswordStrength enum
         // with a calculate static method returning the password strength
-        Pair<PasswordStrength.Strength, PasswordStrength.StrengthModel> passwordStrength = PasswordStrength.calculate(str);
+        PasswordStrength.StrengthData passwordStrength = PasswordStrength.calculate(str);
 
-        binding.content.textView.setText(passwordStrength.first.msg);
-        binding.root.setBackgroundColor(passwordStrength.first.color);
+        binding.content.textView.setText(passwordStrength.getStrength().msg);
+        binding.root.setBackgroundColor(passwordStrength.getStrength().color);
     }
 }

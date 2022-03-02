@@ -11,17 +11,19 @@ public class PasswordStrength {
     public PasswordStrength() {
     }
 
-    public static Pair<Strength, StrengthModel> calculate(String password) {
+    public static StrengthData calculate(String password) {
         return calculatePasswordStrength(password);
     }
 
-    private static Pair<Strength, StrengthModel> calculatePasswordStrength(String password) {
-        StrengthModel strengthModel = new StrengthModel();
+    private static StrengthData calculatePasswordStrength(String password) {
+        StrengthData strengthModel = new StrengthData();
 
         int length = password.length();
 
         if (MIN_LENGTH <= length
                 && length <= MAX_LENGTH) {
+            strengthModel.setLength(true);
+
             for (char c : password.toCharArray()) {
                 if (!strengthModel.isSpecialCharFound() && !Character.isLetterOrDigit(c)) {
                     strengthModel.setSpecialCharFound(true);
@@ -43,35 +45,35 @@ public class PasswordStrength {
             }
         }
 
-        // return enum following the score
-        switch (strengthModel.getScore()) {
-            case 0:
-            case 1:
-                return new Pair<>(Strength.WEAK, strengthModel);
-            case 2:
-                return new Pair<>(Strength.MEDIUM, strengthModel);
-            case 3:
-                return new Pair<>(Strength.GOOD, strengthModel);
-            case 4:
-                return new Pair<>(Strength.STRONG, strengthModel);
-            default:
-                return new Pair<>(Strength.NA, strengthModel);
-        }
+        return strengthModel;
     }
 
-    public static class StrengthModel {
+    public static class StrengthData {
         private boolean upperCaseCharFound = false;
         private boolean lowerCaseCharFound = false;
         private boolean digitCharFound = false;
         private boolean specialCharFound = false;
         private boolean length = false;
 
+        public Strength getStrength() {
+            switch (getScore()) {
+                case 0:
+                case 1:
+                    return Strength.WEAK;
+                case 2:
+                    return Strength.MEDIUM;
+                case 3:
+                    return Strength.GOOD;
+                case 4:
+                    return Strength.STRONG;
+                default:
+                    return Strength.NA;
+            }
+        }
+
         public int getScore() {
             int score = 0;
 
-            if (length) {
-                score++;
-            }
             if (specialCharFound) {
                 score++;
             }
@@ -80,6 +82,13 @@ public class PasswordStrength {
             }
             if (upperCaseCharFound && lowerCaseCharFound) {
                 score++;
+            }
+
+
+            if (length) {
+                score++;
+            }else {
+                score =0;
             }
 
             return score;

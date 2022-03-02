@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Password</string>
+    <string name="lblNotAvailable">n/a</string>
+    <string name="lblWeak">weak</string>
+    <string name="lblMedium">medium</string>
+    <string name="lblGood">good</string>
+    <string name="lblStrong">strong</string>
 </resources>

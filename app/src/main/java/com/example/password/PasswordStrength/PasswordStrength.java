@@ -1,7 +1,5 @@
 package com.example.password.PasswordStrength;
 
-import android.util.Pair;
-
 import com.example.password.R;
 
 public class PasswordStrength {

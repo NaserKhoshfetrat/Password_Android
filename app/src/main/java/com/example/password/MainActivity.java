@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Pair;
 
 import com.example.password.PasswordStrength.PasswordStrength;
 import com.example.password.databinding.ActivityMainBinding;

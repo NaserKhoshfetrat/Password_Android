@@ -5,4 +5,5 @@
     <string name="lblMedium">medium</string>
     <string name="lblGood">good</string>
     <string name="lblStrong">strong</string>
+    <string name="hintPassword">Enter password</string>
 </resources>

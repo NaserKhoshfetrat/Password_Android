@@ -1,4 +1,4 @@
-# Java regex validate password examples
+# validate password examples
 
 ## Secure Password requirements
 
